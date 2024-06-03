@@ -1,6 +1,6 @@
 package com.shopmax.entity;
 
-import com.constant.ItemSellStatus;
+import com.shopmax.constant.ItemSellStatus;
 import com.shopmax.repository.ItemRepository;
 import com.shopmax.repository.MemberRepository;
 import com.shopmax.repository.OrderRepository;
@@ -12,10 +12,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -48,6 +48,7 @@ public class OrderTest {
     
     @Test
     @Transactional
+    @Rollback(value=false)
     @DisplayName("영속성 전이 테스트")
     public void CascadeTest() {
 
@@ -112,6 +113,7 @@ public class OrderTest {
 
     @Test
     @Transactional
+    @Rollback(value=false)
     @DisplayName("고아객체 제거 테스트")
     public void orphanRemovalTest() {
         Order order = createOrder();

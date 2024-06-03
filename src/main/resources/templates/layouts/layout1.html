@@ -26,9 +26,9 @@
 </head>
 <body>
 <div class="site-wrap">
-    <div th:replace="fragments/header::header"></div>
+    <div th:replace="~{fragments/header::header}"></div>
     <div layout:fragment="content" class="content"></div>
-    <div th:replace="fragments/footer::footer"></div>
+    <div th:replace="~{fragments/footer::footer}"></div>
 </div>
 
 
@@ -40,6 +40,7 @@
 <script th:src="@{/js/owl.carousel.min.js}"></script>
 <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
 <script th:src="@{/js/aos.js}"></script>
+<script type="text/javascript" th:src="@{/js/cookie.js}"></script>
 
 <script th:src="@{/js/main.js}"></script>
 

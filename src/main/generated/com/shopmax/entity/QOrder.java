@@ -30,7 +30,7 @@ public class QOrder extends EntityPathBase<Order> {
 
     public final ListPath<OrderItem, QOrderItem> orderItems = this.<OrderItem, QOrderItem>createList("orderItems", OrderItem.class, QOrderItem.class, PathInits.DIRECT2);
 
-    public final EnumPath<com.constant.OrderStatus> orderStatus = createEnum("orderStatus", com.constant.OrderStatus.class);
+    public final EnumPath<com.shopmax.constant.OrderStatus> orderStatus = createEnum("orderStatus", com.shopmax.constant.OrderStatus.class);
 
     public QOrder(String variable) {
         this(Order.class, forVariable(variable), INITS);

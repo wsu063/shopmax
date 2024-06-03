@@ -1,6 +1,8 @@
 package com.shopmax.entity;
 
-import com.constant.ItemSellStatus;
+import com.shopmax.constant.ItemSellStatus;
+import com.shopmax.dto.ItemFormDto;
+import com.shopmax.exception.OutOfStockException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity {
     @Id
     @Column(name="item_id") //테이블로 생성될때 컬럼이름을 지정해준다
     @GeneratedValue(strategy = GenerationType.IDENTITY) //기본키를 자동으로 생성해주는 전략 사용
@@ -32,4 +34,31 @@ public class Item {
 
     @Enumerated(EnumType.STRING) //enum의 이름을 DB의 저장
     private ItemSellStatus itemSellStatus; //판매상태(SELL, SOLD_OUT) -> item_sell_status
+
+    //item엔티티 수정
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
+    
+    //재고 변경
+    public void removeStock(int stockNumber) {
+        int restStock = this.stockNumber - stockNumber; // 남은수량 = 상품 재고 수량 - 주문 수량
+
+        if(restStock < 0) {
+            throw new OutOfStockException("상품의 재고가 부족합니다." + "현재 수량: " + this.stockNumber);
+        }
+
+        this.stockNumber = restStock; // 남은 재고수량 반영
+    }
+
+    // 재고 증가
+    public void addStock(int stockNumber) {
+        this.stockNumber += stockNumber;
+    }
+    
+    
 }

@@ -40,7 +40,7 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
 
-    public final EnumPath<com.constant.Role> role = createEnum("role", com.constant.Role.class);
+    public final EnumPath<com.shopmax.constant.Role> role = createEnum("role", com.shopmax.constant.Role.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updateTime = _super.updateTime;

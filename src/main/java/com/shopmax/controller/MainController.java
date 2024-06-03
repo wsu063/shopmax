@@ -10,7 +10,7 @@ public class MainController {
 
     @GetMapping
     public String main() {
-        return "main"; //메인화면(main.html) 띄움
+        return "main";
     }
 
 

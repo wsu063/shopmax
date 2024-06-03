@@ -1,4 +1,4 @@
-package com.constant;
+package com.shopmax.constant;
 
 
 public enum Role {
